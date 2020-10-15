@@ -1,15 +1,11 @@
 import React from "react";
+import ToDoList from "./ToDoList.js";
 
 function App() {
   return (
-    <div className="container">
-      <div className="todoContainer">
-        <input type="text" />
-        <input type="text" />
-        <input type="text" />
-        <input type="text" />
-      </div>
-    </div>
+    <>
+      <ToDoList />
+    </>
   );
 }
 
