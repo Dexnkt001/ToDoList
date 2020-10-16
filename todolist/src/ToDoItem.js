@@ -2,7 +2,7 @@ import React from "react";
 
 function ToDoItem({ inputText, index }) {
   return (
-    <li className="input">
+    <li className="input" >
       <span className="inputText">
         &#160;
         {index + 1}
