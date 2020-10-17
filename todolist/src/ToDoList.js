@@ -8,24 +8,44 @@ const [arr, plusArr]= React.useState(
     {
       id: 1,
       text: "Никита",
-      status: "notActive",
+      status: false,
     },
     {
       id: 2,
       text: "Артем",
-      status: "notActive",
+      status: false,
     },
     {
       id: 3,
       text: "Влад",
-      status: "notActive",
+      status: false,
     },
   ]
 )
 
 function newSet(){
   plusArr (
-     arr.map(element => element.text = element.text + 'lololol') 
+    arr.fi
+  )
+}
+
+function fun(id){
+  plusArr (
+    arr.map(element => {
+      if (element.id === id && !element.status){
+        element.status = !element.status
+      } return element
+    })
+  )
+}
+
+function funB(id){
+  plusArr (
+    arr.map(element => {
+      if (element.id === id && element.status){
+        element.status = !element.status
+      } return element
+    })
   )
 }
 
@@ -42,8 +62,7 @@ function newSet(){
       </div>
       <ul>
         {arr.map((element, index) => {
-           console.log(arr)
-          return <ToDoItem inputText={element.text} index={index} key={element.id} />
+          return <ToDoItem funB = {funB} funA = {fun} element = {element} index = {index} key = {element.id}/>
 })}
       </ul>
     </div>

@@ -81,3 +81,7 @@ ul {
 .Close:hover {
   cursor: pointer;
 }
+
+.done {
+  background-color: rgba(0, 255, 0, 0.39);
+}

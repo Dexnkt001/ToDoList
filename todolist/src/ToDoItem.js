@@ -1,17 +1,24 @@
 import React from "react";
 
-function ToDoItem({ inputText, index }) {
+function ToDoItem({funB, funA, element, index}) {
+const classes = ['input'];
+
+if (element.status){
+  classes.push('done')
+}
+
+console.log(element.id, '    ', classes)
   return (
-    <li className="input" >
+    <li className={classes.join(' ')} >
       <span className="inputText">
         &#160;
         {index + 1}
         &#160;
-        {inputText}
+        {element.text}
       </span>
       <span className="dopElement">
-        <span className="Accept">&#10004;</span>&#160;
-        <span className="Close">&#10006;</span>
+        <span onClick={() => funA(element.id)} className="Accept">&#10004;</span>&#160;
+        <span onClick={() => funB(element.id)} className="Close">&#10006;</span>
       </span>
     </li>
   );
