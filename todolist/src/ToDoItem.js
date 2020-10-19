@@ -1,7 +1,10 @@
-import React from "react";
+import React, {useContext} from "react";
+import Context from './Context'
 
-function ToDoItem({funB, funA, element, index}) {
+function ToDoItem({element, index}) {
 const classes = ['input'];
+const {fun, deleteToDo} = useContext(Context);
+
 
 if (element.status){
   classes.push('done')
@@ -17,8 +20,8 @@ console.log(element.id, '    ', classes)
         {element.text}
       </span>
       <span className="dopElement">
-        <span onClick={() => funA(element.id)} className="Accept">&#10004;</span>&#160;
-        <span onClick={() => funB(element.id)} className="Close">&#10006;</span>
+        <span onClick={() => fun(element.id)} className="Accept">&#10004;</span>&#160;
+        <span onClick={() => deleteToDo(element.id)} className="Close">&#10006;</span>
       </span>
     </li>
   );

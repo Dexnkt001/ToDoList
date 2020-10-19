@@ -1,9 +1,10 @@
 import React from "react";
-import ToDoItem from "./ToDoItem.js";
-import { Button, InputGroup, FormControl } from "react-bootstrap"; 
+import Context from './Context.js'
+import List from './list.js'
+import AddToDo from './Add.js'
 
 function ToDoList() {
-const [arr, plusArr]= React.useState(
+const [state, setstate]= React.useState(
   [
     {
       id: 1,
@@ -23,15 +24,10 @@ const [arr, plusArr]= React.useState(
   ]
 )
 
-function newSet(){
-  plusArr (
-    arr.fi
-  )
-}
 
 function fun(id){
-  plusArr (
-    arr.map(element => {
+  setstate (
+    state.map(element => {
       if (element.id === id && !element.status){
         element.status = !element.status
       } return element
@@ -39,33 +35,46 @@ function fun(id){
   )
 }
 
-function funB(id){
-  plusArr (
-    arr.map(element => {
-      if (element.id === id && element.status){
-        element.status = !element.status
-      } return element
-    })
+// function funB(id){
+//   setstate (
+//     state.map(element => {
+//       if (element.id === id && element.status){
+//         element.status = !element.status
+//       } return element
+//     })
+//   )
+// }
+
+function addToDo(text){
+setstate(
+  state.concat(
+    [
+      {
+        id: state.length + 1,
+        text,
+        status:false,
+      }
+    ]
   )
+)
 }
 
+function deleteToDo(id){
+  setstate(state.filter(element => element.id !== id))
+}
+
+function reset(){
+  setstate([]);
+}
+
+
   return (
+    <Context.Provider value = {{fun, deleteToDo}}>
     <div className="ToDoList">
-      <div className="AddNewElement">
-        <Button  onClick ={newSet} className ='Add' variant="secondary" size = "sm">Add</Button>
-        <InputGroup size="sm" className="mb-1">
-    <InputGroup.Prepend>
-      <InputGroup.Text id="inputGroup-sizing-sm">Add new ToDo</InputGroup.Text>
-    </InputGroup.Prepend>
-    <FormControl className='smallInput' aria-label="Small" aria-describedby="inputGroup-sizing-sm" />
-  </InputGroup>
-      </div>
-      <ul>
-        {arr.map((element, index) => {
-          return <ToDoItem funB = {funB} funA = {fun} element = {element} index = {index} key = {element.id}/>
-})}
-      </ul>
+    <AddToDo addToDo = {addToDo} reset = {reset}/>
+      <List state = {state}/>
     </div>
+    </Context.Provider>
   );
 }
 

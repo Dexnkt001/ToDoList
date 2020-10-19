@@ -36,6 +36,12 @@ code {
   width: 80%;
 }
 
+.addAndReset {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
 ul {
   list-style: none;
 }
